@@ -35,7 +35,7 @@
                 <li><a href="#dashboard" class="nav-link active"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
                 <li><a href="#focus" class="nav-link"><i data-lucide="timer" class="nav-icon"></i> Focus</a></li>
                 <li><a href="community.html" class="nav-link"><i data-lucide="users" class="nav-icon"></i> Community</a></li>
-                <li><a href="#resources" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
+                <li><a href="resources.html" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
             </ul>
 
             <div class="nav-right">
@@ -70,12 +70,12 @@
                             <span>Total:</span>
                             <span class="total-amount">$34.98</span>
                         </div>
-                        <button class="checkout-btn">Checkout Now</button>
+                        <button class="checkout-btn" onclick="window.location.href='profile.html'">Checkout Now</button>
                     </div>
                 </div>
                 
                 <div class="profile-dropdown-wrapper">
-                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn">
+                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn" onclick="window.location.href='profile.html'">
                         <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
                         <span class="avatar-status-dot"></span>
                     </button>
@@ -391,78 +391,7 @@
             </section>
         </div>
 
-        <!-- Resources Section -->
-        <section id="resources" class="section-wrapper">
-            <h2 class="section-title"><i data-lucide="folder-git-2" class="section-icon"></i> Study Resources</h2>
-            <div class="resources-grid">
-                
-                <!-- Resource 1: Notes -->
-                <div class="resource-card glass-card">
-                    <div class="resource-header">
-                        <div class="resource-icon-box purple-box"><i data-lucide="file-text"></i></div>
-                        <div class="resource-meta">
-                            <span class="resource-category">Vault</span>
-                            <h3 class="resource-title">Shared Study Notes</h3>
-                        </div>
-                    </div>
-                    <p class="resource-desc">Access crowd-sourced, peer-reviewed study notes organized by subject, course code, and SVNIT syllabus.</p>
-                    <div class="resource-footer">
-                        <span class="resource-stats"><i data-lucide="download"></i> 1.2k downloads</span>
-                        <a href="#notes" class="resource-btn"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Resource 2: Practice Problems -->
-                <div class="resource-card glass-card">
-                    <div class="resource-header">
-                        <div class="resource-icon-box cyan-box"><i data-lucide="code-2"></i></div>
-                        <div class="resource-meta">
-                            <span class="resource-category">Coding</span>
-                            <h3 class="resource-title">Practice Problems</h3>
-                        </div>
-                    </div>
-                    <p class="resource-desc">Hand-picked coding questions, algorithms challenges, and mathematics problem sets with solution guides.</p>
-                    <div class="resource-footer">
-                        <span class="resource-stats"><i data-lucide="check-circle"></i> 240+ problems</span>
-                        <a href="#problems" class="resource-btn"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Resource 3: AI Study Assistant -->
-                <div class="resource-card glass-card premium-card">
-                    <div class="premium-badge"><i data-lucide="sparkles"></i> AI Powered</div>
-                    <div class="resource-header">
-                        <div class="resource-icon-box indigo-box"><i data-lucide="cpu"></i></div>
-                        <div class="resource-meta">
-                            <span class="resource-category">AI Assistant</span>
-                            <h3 class="resource-title">ZenStudy AI</h3>
-                        </div>
-                    </div>
-                    <p class="resource-desc">Ask queries, summarize textbook chapters, generate flashcards, and get explanations for complex questions.</p>
-                    <div class="resource-footer">
-                        <span class="resource-stats"><i data-lucide="message-square"></i> Available 24/7</span>
-                        <a href="#ai-assistant" class="resource-btn"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Resource 4: Previous Year Papers -->
-                <div class="resource-card glass-card">
-                    <div class="resource-header">
-                        <div class="resource-icon-box orange-box"><i data-lucide="history"></i></div>
-                        <div class="resource-meta">
-                            <span class="resource-category">Exam Prep</span>
-                            <h3 class="resource-title">Previous Year Papers</h3>
-                        </div>
-                    </div>
-                    <p class="resource-desc">Get access to SVNIT mid-sem and end-sem papers with detailed model answers and keys.</p>
-                    <div class="resource-footer">
-                        <span class="resource-stats"><i data-lucide="archive"></i> 10+ semesters</span>
-                        <a href="#papers" class="resource-btn"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+       
 
         <!-- Tasks Floating Quick list -->
         <section id="tasks" class="section-wrapper tasks-section">

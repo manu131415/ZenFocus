@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="room_style.css">
+    <link rel="stylesheet" href="style.css">
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -71,7 +71,7 @@
                             <span>Total:</span>
                             <span class="total-amount">$34.98</span>
                         </div>
-                        <button class="checkout-btn" onclick="window.location.href='profile.html'">Checkout Now</button>
+                        <button class="checkout-btn">Checkout Now</button>
                     </div>
                 </div>
         
@@ -114,69 +114,82 @@
         </nav>
     </header>
 
-
-<main class="main-content container">
-<!-- Focus Section -->
-            <section id="focus" class="section-wrapper focus-wrapper">
-                <h2 class="section-title"><i data-lucide="play-circle" class="section-icon"></i> Focus Session</h2>
-                <h3 id="room-id"></h3>
-                <div class="timer-card glass-card">
-                    <!-- Timer Modes -->
-                    <div class="timer-modes">
-                        <button class="timer-mode-btn active" data-mode="pomodoro">Pomodoro</button>
-                        <button class="timer-mode-btn" data-mode="short">Short Break</button>
-                        <button class="timer-mode-btn" data-mode="long">Long Break</button>
-                    </div>
-
-                    <!-- Interactive Circle & Time Display -->
-                    <div class="timer-display-wrapper">
-                        <svg class="timer-circle-svg" width="220" height="220" viewBox="0 0 220 220">
-                            <!-- Background track -->
-                            <circle class="timer-circle-track" cx="110" cy="110" r="95" stroke-width="6" fill="transparent"/>
-                            <!-- Glowing animated progress -->
-                            <circle class="timer-circle-progress" id="timer-progress" cx="110" cy="110" r="95" stroke-width="6" fill="transparent" stroke-dasharray="596.9" stroke-dashoffset="0"/>
-                        </svg>
-                        <div class="timer-digits-container">
-                            <span class="timer-digits" id="timer-time">25:00</span>
-                            <span class="timer-state-label" id="timer-state">Ready to Focus</span>
+    <main class="main-content container">
+         <!-- Resources Section -->
+        <section id="resources" class="section-wrapper">
+            <h2 class="section-title"><i data-lucide="folder-git-2" class="section-icon"></i> Study Resources</h2>
+            <div class="resources-grid">
+                
+                <!-- Resource 1: Notes -->
+                <div class="resource-card glass-card">
+                    <div class="resource-header">
+                        <div class="resource-icon-box purple-box"><i data-lucide="file-text"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">Vault</span>
+                            <h3 class="resource-title">Shared Study Notes</h3>
                         </div>
                     </div>
-
-                    <!-- Timer Controls -->
-                    <div class="timer-controls">
-                        <button class="timer-btn btn-secondary" id="timer-reset" title="Reset Timer"><i data-lucide="rotate-ccw"></i></button>
-                        <button class="timer-btn btn-primary" id="timer-toggle">
-                            <i data-lucide="play" class="play-icon"></i>
-                            <i data-lucide="pause" class="pause-icon hidden"></i>
-                            <span id="timer-toggle-text">Start Focus</span>
-                        </button>
-                        <div class="timer-audio-control" id="audio-toggle" title="Toggle Focus Sound">
-                            <i data-lucide="volume-2" class="vol-on-icon"></i>
-                            <i data-lucide="volume-x" class="vol-off-icon hidden"></i>
-                        </div>
+                    <p class="resource-desc">Access crowd-sourced, peer-reviewed study notes organized by subject, course code, and SVNIT syllabus.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="download"></i> 1.2k downloads</span>
+                        <a href="#notes" class="resource-btn"><i data-lucide="arrow-right"></i></a>
                     </div>
-
-                    <!-- Hidden Audio Elements for Alerts and Ambience -->
-                    <audio id="alert-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-200.wav" preload="auto"></audio>
                 </div>
-            </section>
 
-        <!--Floating illustration / Graphics Card (Right)-->
-        <br><br>
-        <h2 class="section-title"><i data-lucide="users" class="section-icon"></i> Grow together</h2>
-        <div class="hero-card illustration-card glass-card">
-            
-            <div class="illustration-backdrop"></div>
-            <img src="assets/Gemini_Generated_Image_o6fwjo6fwjo6fwjo.png" alt="Students Focusing" class="floating-illustration">
-            <div class="feature-pills">
-                <span class="feature-pill pill-timer"><i data-lucide="clock"></i>Pomodoro</span>
-                <span class="feature-pill pill-ai"><i data-lucide="cpu"></i>AI Assistant</span>
-                <span class="feature-pill pill-community"><i data-lucide="users-2"></i>Study Rooms</span>
+                <!-- Resource 2: Practice Problems -->
+                <div class="resource-card glass-card">
+                    <div class="resource-header">
+                        <div class="resource-icon-box cyan-box"><i data-lucide="code-2"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">Coding</span>
+                            <h3 class="resource-title">Practice Problems</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Hand-picked coding questions, algorithms challenges, and mathematics problem sets with solution guides.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="check-circle"></i> 240+ problems</span>
+                        <a href="#problems" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Resource 3: AI Study Assistant -->
+                <div class="resource-card glass-card premium-card">
+                    <div class="premium-badge"><i data-lucide="sparkles"></i> AI Powered</div>
+                    <div class="resource-header">
+                        <div class="resource-icon-box indigo-box"><i data-lucide="cpu"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">AI Assistant</span>
+                            <h3 class="resource-title">ZenStudy AI</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Ask queries, summarize textbook chapters, generate flashcards, and get explanations for complex questions.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="message-square"></i> Available 24/7</span>
+                        <a href="#ai-assistant" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Resource 4: Previous Year Papers -->
+                <div class="resource-card glass-card">
+                    <div class="resource-header">
+                        <div class="resource-icon-box orange-box"><i data-lucide="history"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">Exam Prep</span>
+                            <h3 class="resource-title">Previous Year Papers</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Get access to SVNIT mid-sem and end-sem papers with detailed model answers and keys.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="archive"></i> 10+ semesters</span>
+                        <a href="#papers" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-</main>
+        </section>
+    </main>
 
-<!-- Footer -->
+    <!-- Footer -->
     <footer class="footer-wrapper">
         <div class="footer-content container">
             <div class="footer-left">
