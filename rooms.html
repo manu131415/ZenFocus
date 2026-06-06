@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenFocus — Focus Rooms</title>
+    <meta name="description" content="A premium student productivity and focus platform. Stay motivated, track your goals, join study rooms, and build a consistent routine with ZenFocus.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="room_style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Background Canvas for Animated Particles -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Background Glowing Ambient Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <!-- Sticky Navbar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar container">
+            <div class="nav-left">
+                <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
+                <span class="nav-logo-text"><a href="index.html">ZenFocus</a></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html#dashboard" class="nav-link"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
+                <li><a href="index.html#focus" class="nav-link"><i data-lucide="timer" class="nav-icon"></i> Focus</a></li>
+                <li><a href="community.html" class="nav-link"><i data-lucide="users" class="nav-icon"></i> Community</a></li>
+                <li><a href="index.html#resources" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="cart-indicator-wrapper" id="cart-btn" title="View Cart">
+                    <div class="cart-btn">
+                        <i data-lucide="shopping-cart" class="cart-icon"></i>
+                        <span class="cart-badge">2</span>
+                    </div>
+                    <!-- Mini Cart Dropdown -->
+                    <div class="glass-dropdown cart-dropdown">
+                        <div class="cart-header">
+                            <h3>Shopping Cart</h3>
+                            <span class="cart-items-count">2 Items</span>
+                        </div>
+                        <ul class="cart-items-list">
+                            <li class="cart-item">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-name">ZenFocus Premium Yearly</span>
+                                    <span class="cart-item-price">$29.99</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
+                            </li>
+                            <li class="cart-item">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-name">Focus Sound Pack - Rainforest</span>
+                                    <span class="cart-item-price">$4.99</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
+                            </li>
+                        </ul>
+                        <div class="cart-total">
+                            <span>Total:</span>
+                            <span class="total-amount">$34.98</span>
+                        </div>
+                        <button class="checkout-btn">Checkout Now</button>
+                    </div>
+                </div>
+        
+                <div class="profile-dropdown-wrapper">
+                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn">
+                        <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
+                        <span class="avatar-status-dot"></span>
+                    </button>
+                    <!-- Elegant Glassmorphism Dropdown -->
+                    <div class="glass-dropdown profile-dropdown">
+                        <div class="dropdown-header">
+                            <span class="user-name">Alex Rivera</span>
+                            <span class="user-email">alex.rivera@svnit.ac.in</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <ul class="dropdown-menu-links">
+                            <li>
+                                <a href="index.html#tasks" class="dropdown-link" id="tasks-dropdown-link">
+                                    <i data-lucide="check-square" class="dropdown-icon"></i>
+                                    <span>Tasks</span>
+                                    <span class="badge badge-purple">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#dashboard" class="dropdown-link">
+                                    <i data-lucide="trending-up" class="dropdown-icon"></i>
+                                    <span>Progress</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#logout" class="dropdown-link text-danger">
+                                    <i data-lucide="log-out" class="dropdown-icon"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+<main class="main-content container">
+<!-- Focus Section -->
+            <section id="focus" class="section-wrapper focus-wrapper">
+                <h2 class="section-title"><i data-lucide="play-circle" class="section-icon"></i> Focus Session</h2>
+                <h3 id="room-id"></h3>
+                <div class="timer-card glass-card">
+                    <!-- Timer Modes -->
+                    <div class="timer-modes">
+                        <button class="timer-mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                        <button class="timer-mode-btn" data-mode="short">Short Break</button>
+                        <button class="timer-mode-btn" data-mode="long">Long Break</button>
+                    </div>
+
+                    <!-- Interactive Circle & Time Display -->
+                    <div class="timer-display-wrapper">
+                        <svg class="timer-circle-svg" width="220" height="220" viewBox="0 0 220 220">
+                            <!-- Background track -->
+                            <circle class="timer-circle-track" cx="110" cy="110" r="95" stroke-width="6" fill="transparent"/>
+                            <!-- Glowing animated progress -->
+                            <circle class="timer-circle-progress" id="timer-progress" cx="110" cy="110" r="95" stroke-width="6" fill="transparent" stroke-dasharray="596.9" stroke-dashoffset="0"/>
+                        </svg>
+                        <div class="timer-digits-container">
+                            <span class="timer-digits" id="timer-time">25:00</span>
+                            <span class="timer-state-label" id="timer-state">Ready to Focus</span>
+                        </div>
+                    </div>
+
+                    <!-- Timer Controls -->
+                    <div class="timer-controls">
+                        <button class="timer-btn btn-secondary" id="timer-reset" title="Reset Timer"><i data-lucide="rotate-ccw"></i></button>
+                        <button class="timer-btn btn-primary" id="timer-toggle">
+                            <i data-lucide="play" class="play-icon"></i>
+                            <i data-lucide="pause" class="pause-icon hidden"></i>
+                            <span id="timer-toggle-text">Start Focus</span>
+                        </button>
+                        <div class="timer-audio-control" id="audio-toggle" title="Toggle Focus Sound">
+                            <i data-lucide="volume-2" class="vol-on-icon"></i>
+                            <i data-lucide="volume-x" class="vol-off-icon hidden"></i>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Audio Elements for Alerts and Ambience -->
+                    <audio id="alert-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-200.wav" preload="auto"></audio>
+                </div>
+            </section>
+
+        <!--Floating illustration / Graphics Card (Right)-->
+        <br><br>
+        <h2 class="section-title"><i data-lucide="users" class="section-icon"></i> Grow together</h2>
+        <div class="hero-card illustration-card glass-card">
+            
+            <div class="illustration-backdrop"></div>
+            <img src="assets/Gemini_Generated_Image_o6fwjo6fwjo6fwjo.png" alt="Students Focusing" class="floating-illustration">
+            <div class="feature-pills">
+                <span class="feature-pill pill-timer"><i data-lucide="clock"></i>Pomodoro</span>
+                <span class="feature-pill pill-ai"><i data-lucide="cpu"></i>AI Assistant</span>
+                <span class="feature-pill pill-community"><i data-lucide="users-2"></i>Study Rooms</span>
+            </div>
+        </div>
+</main>
+
+<!-- Footer -->
+    <footer class="footer-wrapper">
+        <div class="footer-content container">
+            <div class="footer-left">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="ZenFocus Logo" class="footer-logo">
+                    <span>ZenFocus</span>
+                </div>
+                <p class="footer-tagline">Designed to help students build consistent study habits.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 ZenFocus. Crafted with passion for the hacker community.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="app.js"></script>
+</body>
+</html>

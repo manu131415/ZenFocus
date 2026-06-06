@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenFocus — Elevate Your Study & Focus Habits</title>
+    <meta name="description" content="A premium student productivity and focus platform. Stay motivated, track your goals, join study rooms, and build a consistent routine with ZenFocus.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Background Canvas for Animated Particles -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Background Glowing Ambient Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <!-- Sticky Navbar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar container">
+            <div class="nav-left">
+                <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
+                <span class="nav-logo-text">ZenFocus</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#dashboard" class="nav-link active"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
+                <li><a href="#focus" class="nav-link"><i data-lucide="timer" class="nav-icon"></i> Focus</a></li>
+                <li><a href="community.html" class="nav-link"><i data-lucide="users" class="nav-icon"></i> Community</a></li>
+                <li><a href="#resources" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="cart-indicator-wrapper" id="cart-btn" title="View Cart">
+                    <div class="cart-btn">
+                        <i data-lucide="shopping-cart" class="cart-icon"></i>
+                        <span class="cart-badge">2</span>
+                    </div>
+                    <!-- Mini Cart Dropdown -->
+                    <div class="glass-dropdown cart-dropdown">
+                        <div class="cart-header">
+                            <h3>Shopping Cart</h3>
+                            <span class="cart-items-count">2 Items</span>
+                        </div>
+                        <ul class="cart-items-list">
+                            <li class="cart-item">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-name">ZenFocus Premium Yearly</span>
+                                    <span class="cart-item-price">$29.99</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
+                            </li>
+                            <li class="cart-item">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-name">Focus Sound Pack - Rainforest</span>
+                                    <span class="cart-item-price">$4.99</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
+                            </li>
+                        </ul>
+                        <div class="cart-total">
+                            <span>Total:</span>
+                            <span class="total-amount">$34.98</span>
+                        </div>
+                        <button class="checkout-btn">Checkout Now</button>
+                    </div>
+                </div>
+                
+                <div class="profile-dropdown-wrapper">
+                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn">
+                        <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
+                        <span class="avatar-status-dot"></span>
+                    </button>
+                    <!-- Elegant Glassmorphism Dropdown -->
+                    <div class="glass-dropdown profile-dropdown">
+                        <div class="dropdown-header">
+                            <span class="user-name">Alex Rivera</span>
+                            <span class="user-email">alex.rivera@svnit.ac.in</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <ul class="dropdown-menu-links">
+                            <li>
+                                <a href="#tasks" class="dropdown-link" id="tasks-dropdown-link">
+                                    <i data-lucide="check-square" class="dropdown-icon"></i>
+                                    <span>Tasks</span>
+                                    <span class="badge badge-purple">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dashboard" class="dropdown-link">
+                                    <i data-lucide="trending-up" class="dropdown-icon"></i>
+                                    <span>Progress</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#logout" class="dropdown-link text-danger">
+                                    <i data-lucide="log-out" class="dropdown-icon"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content container">
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-grid">
+                <!-- Quote & Intro Card (Left) -->
+                <div class="hero-card quote-card glass-card">
+                    <div class="quote-header">
+                        <span class="quote-tagline"><i data-lucide="sparkles"></i> Daily Inspiration</span>
+                        <div class="quote-icon-bg"><i data-lucide="quote"></i></div>
+                    </div>
+                    <blockquote class="motivational-quote">
+                        “Small steps every day create extraordinary results”
+                    </blockquote>
+                    <p class="quote-author">— James Clear, Atomic Habits</p>
+                    <div class="quote-footer">
+                        <div class="quote-pulse-container">
+                            <span class="pulse-ring"></span>
+                            <span class="pulse-dot"></span>
+                            <span class="quote-pulse-text">1,248 students focusing right now</span>
+                        </div>
+                        <button class="quote-cta-btn" onclick="scrollToSection('focus')">Join Session</button>
+                    </div>
+                </div>
+                
+                <!-- Floating Illustration / Graphics Card (Right) -->
+                <div class="hero-card illustration-card glass-card">
+                    <div class="illustration-backdrop"></div>
+                    <img src="assets/hero-illustration.png" alt="3D Hourglass Productivity Graphic" class="floating-illustration">
+                    <div class="feature-pills">
+                        <span class="feature-pill pill-timer"><i data-lucide="clock"></i> Pomodoro</span>
+                        <span class="feature-pill pill-ai"><i data-lucide="cpu"></i> AI Assistant</span>
+                        <span class="feature-pill pill-community"><i data-lucide="users-2"></i> Study Rooms</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section-wrapper">
+            <h2 class="section-title"><i data-lucide="layout-grid" class="section-icon"></i> Your Workspace</h2>
+            <div class="dashboard-grid">
+                
+                <!-- Stat Card 1: Today's Goal -->
+                <div class="stat-card glass-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Today's Goal</span>
+                        <div class="stat-icon-wrapper cyan-glow"><i data-lucide="target" class="stat-icon text-cyan"></i></div>
+                    </div>
+                    <div class="stat-card-body">
+                        <div class="progress-radial-wrapper">
+                            <svg class="progress-radial" width="100" height="100" viewBox="0 0 100 100">
+                                <circle class="progress-radial-bg" cx="50" cy="50" r="40" stroke-width="8" fill="transparent"/>
+                                <circle class="progress-radial-bar" cx="50" cy="50" r="40" stroke-width="8" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="78.5"/> <!-- 68.75% of 251.2 = 172.7 progress -->
+                            </svg>
+                            <div class="progress-radial-text">
+                                <span class="progress-value">69%</span>
+                                <span class="progress-label">done</span>
+                            </div>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-num">5.5 <span class="stat-unit">/ 8 hrs</span></span>
+                            <p class="stat-desc">2.5 hours remaining to hit goal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2: Completed -->
+                <div class="stat-card glass-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Weekly Analytics</span>
+                        <div class="stat-icon-wrapper purple-glow"><i data-lucide="bar-chart-2" class="stat-icon text-purple"></i></div>
+                    </div>
+                    <div class="stat-card-body">
+                        <!-- Custom Interactive SVG Bar Chart -->
+                        <div class="bar-chart-container">
+                            <svg class="bar-chart" viewBox="0 0 200 80">
+                                <g class="chart-bars">
+                                    <!-- Mon -->
+                                    <rect class="chart-bar" x="15" y="30" width="14" height="50" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Tue -->
+                                    <rect class="chart-bar" x="40" y="20" width="14" height="60" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Wed -->
+                                    <rect class="chart-bar" x="65" y="45" width="14" height="35" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Thu -->
+                                    <rect class="chart-bar" x="90" y="15" width="14" height="65" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Fri -->
+                                    <rect class="chart-bar" x="115" y="25" width="14" height="55" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Sat (Today - highlighted) -->
+                                    <rect class="chart-bar active" x="140" y="25" width="14" height="55" rx="3" fill="url(#cyanGradient)"/>
+                                    <!-- Sun -->
+                                    <rect class="chart-bar future" x="165" y="75" width="14" height="5" rx="3" fill="rgba(255,255,255,0.1)"/>
+                                </g>
+                                <defs>
+                                    <linearGradient id="purpleGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#8B5CF6"/>
+                                        <stop offset="100%" stop-color="#4F46E5"/>
+                                    </linearGradient>
+                                    <linearGradient id="cyanGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#06B6D4"/>
+                                        <stop offset="100%" stop-color="#0891B2"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="chart-labels">
+                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span class="active">S</span><span>S</span>
+                            </div>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-num">32.4 <span class="stat-unit">hrs total</span></span>
+                            <p class="stat-desc">Up +14% compared to last week</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3: Current Streak -->
+                <div class="stat-card glass-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Daily Streak</span>
+                        <div class="stat-icon-wrapper orange-glow"><i data-lucide="flame" class="stat-icon text-orange"></i></div>
+                    </div>
+                    <div class="stat-card-body streak-body">
+                        <div class="streak-large-count">
+                            <span class="streak-number glow-text-orange">12</span>
+                            <span class="streak-label">DAYS</span>
+                        </div>
+                        <div class="streak-milestone-bar">
+                            <div class="streak-milestone-fill" style="width: 80%;"></div>
+                            <span class="streak-milestone-marker m1" title="5 Day Milestone Done"><i data-lucide="award"></i></span>
+                            <span class="streak-milestone-marker m2" title="10 Day Milestone Done"><i data-lucide="award"></i></span>
+                            <span class="streak-milestone-marker m3 active" title="15 Day Milestone Pending"><i data-lucide="crown"></i></span>
+                        </div>
+                        <div class="stat-details">
+                            <p class="stat-desc text-center">3 days until 15-day streak milestone!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 4: Next Deadline -->
+                <div class="stat-card glass-card deadline-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Critical Deadline</span>
+                        <div class="stat-icon-wrapper red-glow"><i data-lucide="bell-ring" class="stat-icon text-red"></i></div>
+                    </div>
+                    <div class="stat-card-body deadline-body">
+                        <div class="deadline-badge">TOMORROW 11:59 PM</div>
+                        <h4 class="deadline-title">Machine Learning Competition</h4>
+                        <p class="deadline-subtitle">SVNIT National Hackathon Round 1</p>
+                        
+                        <!-- Countdown Timer -->
+                        <div class="deadline-countdown" id="deadline-timer">
+                            <div class="countdown-unit">
+                                <span class="countdown-num" id="dl-hours">25</span>
+                                <span class="countdown-lbl">hrs</span>
+                            </div>
+                            <span class="countdown-divider">:</span>
+                            <div class="countdown-unit">
+                                <span class="countdown-num" id="dl-mins">32</span>
+                                <span class="countdown-lbl">mins</span>
+                            </div>
+                            <span class="countdown-divider">:</span>
+                            <div class="countdown-unit">
+                                <span class="countdown-num" id="dl-secs">15</span>
+                                <span class="countdown-lbl">secs</span>
+                            </div>
+                        </div>
+                        <button class="deadline-action-btn"><i data-lucide="upload-cloud"></i> Submit Project</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Focus & Community Dual Grid Section -->
+        <div class="focus-community-container">
+            <!-- Focus Section -->
+            <section id="focus" class="section-wrapper focus-wrapper">
+                <h2 class="section-title"><i data-lucide="play-circle" class="section-icon"></i> Focus Session</h2>
+                <div class="timer-card glass-card">
+                    <!-- Timer Modes -->
+                    <div class="timer-modes">
+                        <button class="timer-mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                        <button class="timer-mode-btn" data-mode="short">Short Break</button>
+                        <button class="timer-mode-btn" data-mode="long">Long Break</button>
+                    </div>
+
+                    <!-- Interactive Circle & Time Display -->
+                    <div class="timer-display-wrapper">
+                        <svg class="timer-circle-svg" width="220" height="220" viewBox="0 0 220 220">
+                            <!-- Background track -->
+                            <circle class="timer-circle-track" cx="110" cy="110" r="95" stroke-width="6" fill="transparent"/>
+                            <!-- Glowing animated progress -->
+                            <circle class="timer-circle-progress" id="timer-progress" cx="110" cy="110" r="95" stroke-width="6" fill="transparent" stroke-dasharray="596.9" stroke-dashoffset="0"/>
+                        </svg>
+                        <div class="timer-digits-container">
+                            <span class="timer-digits" id="timer-time">25:00</span>
+                            <span class="timer-state-label" id="timer-state">Ready to Focus</span>
+                        </div>
+                    </div>
+
+                    <!-- Timer Controls -->
+                    <div class="timer-controls">
+                        <button class="timer-btn btn-secondary" id="timer-reset" title="Reset Timer"><i data-lucide="rotate-ccw"></i></button>
+                        <button class="timer-btn btn-primary" id="timer-toggle">
+                            <i data-lucide="play" class="play-icon"></i>
+                            <i data-lucide="pause" class="pause-icon hidden"></i>
+                            <span id="timer-toggle-text">Start Focus</span>
+                        </button>
+                        <div class="timer-audio-control" id="audio-toggle" title="Toggle Focus Sound">
+                            <i data-lucide="volume-2" class="vol-on-icon"></i>
+                            <i data-lucide="volume-x" class="vol-off-icon hidden"></i>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Audio Elements for Alerts and Ambience -->
+                    <audio id="alert-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-200.wav" preload="auto"></audio>
+                </div>
+            </section>
+
+            <!-- Community Highlights Section -->
+            <section id="community" class="section-wrapper community-wrapper">
+                <h2 class="section-title"><i data-lucide="users-2" class="section-icon"></i> Study Rooms</h2>
+                <div class="community-card glass-card">
+                    <div class="community-header">
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            <span class="live-label">8 Active Rooms</span>
+                        </div>
+                        <a href="#join-all" class="community-link-all">View All</a>
+                    </div>
+
+                    <!-- Room Item 1 -->
+                    <div class="room-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Library Silence Room #2</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 48 students  •  <i data-lucide="tag" class="small-icon"></i> Silent Study</p>
+                        </div>
+                        <button class="join-room-btn"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Room Item 2 -->
+                    <div class="room-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Machine Learning Group Study</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 14 students  •  <i data-lucide="tag" class="small-icon"></i> Collaborative</p>
+                        </div>
+                        <button class="join-room-btn"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Weekly Leaderboard Preview -->
+                    <div class="leaderboard-preview">
+                        <h4 class="leaderboard-title"><i data-lucide="trophy" class="trophy-icon"></i> Weekly Leaderboard</h4>
+                        <div class="leaderboard-users">
+                            <div class="leaderboard-user">
+                                <span class="rank rank-1">1</span>
+                                <img src="assets/avatar.png" alt="Rank 1 Avatar" class="leaderboard-avatar">
+                                <span class="user-name">Alex R.</span>
+                                <span class="focus-time">42.5 hrs</span>
+                            </div>
+                            <div class="leaderboard-user">
+                                <span class="rank rank-2">2</span>
+                                <img src="assets/avatar.png" alt="Rank 2 Avatar" class="leaderboard-avatar">
+                                <span class="user-name">Sneha M.</span>
+                                <span class="focus-time">39.1 hrs</span>
+                            </div>
+                            <div class="leaderboard-user">
+                                <span class="rank rank-3">3</span>
+                                <img src="assets/avatar.png" alt="Rank 3 Avatar" class="leaderboard-avatar">
+                                <span class="user-name">Dev K.</span>
+                                <span class="focus-time">36.8 hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section-wrapper">
+            <h2 class="section-title"><i data-lucide="folder-git-2" class="section-icon"></i> Study Resources</h2>
+            <div class="resources-grid">
+                
+                <!-- Resource 1: Notes -->
+                <div class="resource-card glass-card">
+                    <div class="resource-header">
+                        <div class="resource-icon-box purple-box"><i data-lucide="file-text"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">Vault</span>
+                            <h3 class="resource-title">Shared Study Notes</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Access crowd-sourced, peer-reviewed study notes organized by subject, course code, and SVNIT syllabus.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="download"></i> 1.2k downloads</span>
+                        <a href="#notes" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Resource 2: Practice Problems -->
+                <div class="resource-card glass-card">
+                    <div class="resource-header">
+                        <div class="resource-icon-box cyan-box"><i data-lucide="code-2"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">Coding</span>
+                            <h3 class="resource-title">Practice Problems</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Hand-picked coding questions, algorithms challenges, and mathematics problem sets with solution guides.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="check-circle"></i> 240+ problems</span>
+                        <a href="#problems" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Resource 3: AI Study Assistant -->
+                <div class="resource-card glass-card premium-card">
+                    <div class="premium-badge"><i data-lucide="sparkles"></i> AI Powered</div>
+                    <div class="resource-header">
+                        <div class="resource-icon-box indigo-box"><i data-lucide="cpu"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">AI Assistant</span>
+                            <h3 class="resource-title">ZenStudy AI</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Ask queries, summarize textbook chapters, generate flashcards, and get explanations for complex questions.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="message-square"></i> Available 24/7</span>
+                        <a href="#ai-assistant" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Resource 4: Previous Year Papers -->
+                <div class="resource-card glass-card">
+                    <div class="resource-header">
+                        <div class="resource-icon-box orange-box"><i data-lucide="history"></i></div>
+                        <div class="resource-meta">
+                            <span class="resource-category">Exam Prep</span>
+                            <h3 class="resource-title">Previous Year Papers</h3>
+                        </div>
+                    </div>
+                    <p class="resource-desc">Get access to SVNIT mid-sem and end-sem papers with detailed model answers and keys.</p>
+                    <div class="resource-footer">
+                        <span class="resource-stats"><i data-lucide="archive"></i> 10+ semesters</span>
+                        <a href="#papers" class="resource-btn"><i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tasks Floating Quick list -->
+        <section id="tasks" class="section-wrapper tasks-section">
+            <h2 class="section-title"><i data-lucide="check-square" class="section-icon"></i> Active Tasks</h2>
+            <div class="tasks-card glass-card">
+                <div class="tasks-header">
+                    <h3>Today's Focus List</h3>
+                    <button class="add-task-btn" id="add-task-btn"><i data-lucide="plus"></i> Add Task</button>
+                </div>
+                <div class="tasks-input-container hidden" id="task-input-wrapper">
+                    <input type="text" id="task-input" placeholder="What will you work on next?">
+                    <button id="task-submit-btn"><i data-lucide="plus"></i></button>
+                </div>
+                <ul class="tasks-list" id="tasks-list">
+                    <li class="task-item">
+                        <label class="task-checkbox-wrapper">
+                            <input type="checkbox" checked class="task-checkbox">
+                            <span class="task-custom-checkbox"><i data-lucide="check" class="check-icon"></i></span>
+                            <span class="task-text">Revise Lecture 12-14 of Machine Learning</span>
+                        </label>
+                        <span class="task-tag tag-high">High</span>
+                    </li>
+                    <li class="task-item">
+                        <label class="task-checkbox-wrapper">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-custom-checkbox"><i data-lucide="check" class="check-icon"></i></span>
+                            <span class="task-text">Write PyTorch Training Loop for CNN</span>
+                        </label>
+                        <span class="task-tag tag-medium">Medium</span>
+                    </li>
+                    <li class="task-item">
+                        <label class="task-checkbox-wrapper">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-custom-checkbox"><i data-lucide="check" class="check-icon"></i></span>
+                            <span class="task-text">Read Atomic Habits Chapter 4</span>
+                        </label>
+                        <span class="task-tag tag-low">Low</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-wrapper">
+        <div class="footer-content container">
+            <div class="footer-left">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="ZenFocus Logo" class="footer-logo">
+                    <span>ZenFocus</span>
+                </div>
+                <p class="footer-tagline">Designed to help students build consistent study habits.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 ZenFocus. Crafted with passion for the hacker community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenFocus — Community</title>
+    <meta name="description" content="A premium student productivity and focus platform. Stay motivated, track your goals, join study rooms, and build a consistent routine with ZenFocus.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="page_style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Background Canvas for Animated Particles -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Background Glowing Ambient Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <!-- Sticky Navbar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar container">
+            <div class="nav-left">
+                <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
+                <span class="nav-logo-text"><a href="index.html">ZenFocus</a></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html#dashboard" class="nav-link"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
+                <li><a href="index.html#focus" class="nav-link"><i data-lucide="timer" class="nav-icon"></i> Focus</a></li>
+                <li><a href="community.html" class="nav-link active"><i data-lucide="users" class="nav-icon"></i> Community</a></li>
+                <li><a href="#resources" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="cart-indicator-wrapper" id="cart-btn" title="View Cart">
+                    <div class="cart-btn">
+                        <i data-lucide="shopping-cart" class="cart-icon"></i>
+                        <span class="cart-badge">2</span>
+                    </div>
+                    <!-- Mini Cart Dropdown -->
+                    <div class="glass-dropdown cart-dropdown">
+                        <div class="cart-header">
+                            <h3>Shopping Cart</h3>
+                            <span class="cart-items-count">2 Items</span>
+                        </div>
+                        <ul class="cart-items-list">
+                            <li class="cart-item">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-name">ZenFocus Premium Yearly</span>
+                                    <span class="cart-item-price">$29.99</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
+                            </li>
+                            <li class="cart-item">
+                                <div class="cart-item-info">
+                                    <span class="cart-item-name">Focus Sound Pack - Rainforest</span>
+                                    <span class="cart-item-price">$4.99</span>
+                                </div>
+                                <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
+                            </li>
+                        </ul>
+                        <div class="cart-total">
+                            <span>Total:</span>
+                            <span class="total-amount">$34.98</span>
+                        </div>
+                        <button class="checkout-btn">Checkout Now</button>
+                    </div>
+                </div>
+                <!--here-->
+                <div class="profile-dropdown-wrapper">
+                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn">
+                        <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
+                        <span class="avatar-status-dot"></span>
+                    </button>
+                    <!-- Elegant Glassmorphism Dropdown -->
+                    <div class="glass-dropdown profile-dropdown">
+                        <div class="dropdown-header">
+                            <span class="user-name">Alex Rivera</span>
+                            <span class="user-email">alex.rivera@svnit.ac.in</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <ul class="dropdown-menu-links">
+                            <li>
+                                <a href="index.html#tasks" class="dropdown-link" id="tasks-dropdown-link">
+                                    <i data-lucide="check-square" class="dropdown-icon"></i>
+                                    <span>Tasks</span>
+                                    <span class="badge badge-purple">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#dashboard" class="dropdown-link">
+                                    <i data-lucide="trending-up" class="dropdown-icon"></i>
+                                    <span>Progress</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#logout" class="dropdown-link text-danger">
+                                    <i data-lucide="log-out" class="dropdown-icon"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main class="main-content container">
+    <!--Hero Section-->
+
+    <section class="hero-section">
+        <div class="hero-grid">
+            
+            <!--Community section (Left)-->
+            <div class="hero-card quote-card glass-card">
+                <div class="quote-header">
+                    <span class="quote-tagline"><i data-lucide="sparkles"></i>Connect. Focus. Achieve</span>
+                    <div class="quote-icon-bg"><i data-lucide="quote"></i></div>
+                </div>
+                <blockquote class="motivational-quote">
+                     1.2K+ already leveling up. Join the community!
+                </blockquote>
+                <p class="quote-author">~ Join fast</p>
+                <div class="quote-footer">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-dot"></span>
+                    <span class="quote-pulse-text">1,248 students focusing right now</span>
+                </div>
+                <button class="quote-cta-btn" onclick="window.location.href='rooms.html'">Join Now</button>
+            </div>
+        
+
+        <!--Virtual pet Graphics Card (Right)-->
+        <div class="virtual-pet-card">
+            <div class="virtual-pet">
+                <img src="assets/pet.png" alt="Virtual Study Pet" class="virtual-pet-img">
+                <div class="pet-pulse">
+                    <span class="pet-pulse-ring"></span>
+                    <span class="pet-pulse-dot"></span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!--Community Tips-->
+    <section class="community-hero">
+        <div class="community-flex">
+            <!--Tips section-->
+            <div class="tip-card glass-card">
+                <div class="tip-img">
+                    <img src="assets/timer.png" alt="" class="info-img">
+                    <span class="info-head">Ignite Your Flow State</span>
+                </div>
+                <p>Unlock your mind’s true potential with proven, science-backed focus techniques designed to eliminate distractions and accelerate your learning. By mastering time-blocking, optimizing your cognitive load, and engineering the perfect distraction-free environment.</p>
+            </div>
+
+            <div class="tip-card glass-card">
+                <div class="tip-img">
+                    <img src="assets/connect.png" alt="" class="info-img">
+                    <span class="info-head">Connect. Study. Grow.</span>
+                </div>
+                <p>Connect with peers, share knowledge, and grow together in our vibrant community. Designed for ambitious minds, this is where deep work meets collaboration. Dive into 24/7 virtual focus rooms, exchange game-changing study hacks, celebrate milestones on the live leaderboard.</p>
+            </div>
+
+            <div class="tip-card glass-card">
+                <div class="tip-img">
+                    <img src="assets/virtual_hall.png" alt="" class="info-img">
+                    <span class="info-head">Virtual Study Hall</span>
+                </div>
+                <p>Collaborate and learn in our virtual study environment. Leave isolation behind and step into 24/7 digital focus rooms designed to replicate the energy of a physical library. Set your daily intentions, work silently alongside driven peers.</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Community Highlights Section -->
+            <section id="community" class="section-wrapper community-wrapper">
+                <h2 class="section-title"><i data-lucide="users-2" class="section-icon"></i> Study Rooms</h2>
+                <div class="community-card glass-card">
+                    <div class="community-header">
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            <span class="live-label">8 Active Rooms</span>
+                        </div>
+                        <a href="#join-all" class="community-link-all" id="view-all-btn">View All</a>
+                    </div>
+
+                    <!-- Room Item 1 -->
+                    <div class="room-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Library Silence Room</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 48 students  •  <i data-lucide="tag" class="small-icon"></i> Silent Study</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Room Item 2 -->
+                    <div class="room-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Machine Learning Group Study</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 14 students  •  <i data-lucide="tag" class="small-icon"></i> Collaborative</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Room Item 3 -->
+                    <div class="room-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Computer Science Group</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 22 students  •  <i data-lucide="tag" class="small-icon"></i> Collaborative</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Hidden Room Item 4 -->
+                    <div class="room-hidden-item">
+                        <div class="room-info">
+                            <h4 class="room-title">12th Grade Study Room</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 104 students  •  <i data-lucide="tag" class="small-icon"></i> Collaborative</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Hidden Room Item 5 -->
+                    <div class="room-hidden-item">
+                        <div class="room-info">
+                            <h4 class="room-title">11th Grade Study Room</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 55 students  •  <i data-lucide="tag" class="small-icon"></i> Collaborative</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Hidden Room Item 6 -->
+                    <div class="room-hidden-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Self-Study Room</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 1698 students  •  <i data-lucide="tag" class="small-icon"></i> Self</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Hidden Room Item 7 -->
+                    <div class="room-hidden-item">
+                        <div class="room-info">
+                            <h4 class="room-title">Mechanical Engineering Study Group</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 2204 students  •  <i data-lucide="tag" class="small-icon"></i> Self</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Hidden Room Item 8 -->
+                    <div class="room-hidden-item">
+                        <div class="room-info">
+                            <h4 class="room-title">German Language Study Group</h4>
+                            <p class="room-details"><i data-lucide="users" class="small-icon"></i> 13 students  •  <i data-lucide="tag" class="small-icon"></i> Collaborative</p>
+                        </div>
+                        <button class="join-room-btn" onclick="window.location.href='rooms.html'"><i data-lucide="video"></i> Join</button>
+                    </div>
+
+                    <!-- Weekly Leaderboard Preview -->
+                    <div class="leaderboard-preview">
+                        <h4 class="leaderboard-title"><i data-lucide="trophy" class="trophy-icon"></i> Weekly Leaderboard</h4>
+                        <div class="leaderboard-users">
+                            <div class="leaderboard-user">
+                                <span class="rank rank-1">1</span>
+                                <img src="assets/avatar.png" alt="Rank 1 Avatar" class="leaderboard-avatar">
+                                <span class="user-name">Alex R.</span>
+                                <span class="focus-time">42.5 hrs</span>
+                            </div>
+                            <div class="leaderboard-user">
+                                <span class="rank rank-2">2</span>
+                                <img src="assets/avatar.png" alt="Rank 2 Avatar" class="leaderboard-avatar">
+                                <span class="user-name">Sneha M.</span>
+                                <span class="focus-time">39.1 hrs</span>
+                            </div>
+                            <div class="leaderboard-user">
+                                <span class="rank rank-3">3</span>
+                                <img src="assets/avatar.png" alt="Rank 3 Avatar" class="leaderboard-avatar">
+                                <span class="user-name">Dev K.</span>
+                                <span class="focus-time">36.8 hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="community-focus" class="section-wrapper community-wrapper">
+               
+            </section>
+   
+</main>
+<!-- Footer -->
+    <footer class="footer-wrapper">
+        <div class="footer-content container">
+            <div class="footer-left">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="ZenFocus Logo" class="footer-logo">
+                    <span>ZenFocus</span>
+                </div>
+                <p class="footer-tagline">Designed to help students build consistent study habits.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 ZenFocus. Crafted with passion for the hacker community.</p>
+            </div>
+        </div>
+    </footer>
+<script src="app.js"></script>
+</body>
+</html>
