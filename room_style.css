@@ -506,7 +506,23 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.profile-points{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-accent);
+    margin-top: 8px;
+}
+.points-value{
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+.points-icon{
+    width: 14px;
+    height: 14px;
+    color: var(--color-accent);
+}
 .dropdown-divider {
     height: 1px;
     background-color: var(--color-border);
