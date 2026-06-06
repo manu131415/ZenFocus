@@ -80,6 +80,7 @@
                         <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
                         <span class="avatar-status-dot"></span>
                     </button>
+
                     <!-- Elegant Glassmorphism Dropdown -->
                     <div class="glass-dropdown profile-dropdown">
                         <div class="dropdown-header">
@@ -92,17 +93,17 @@
                                 <a href="index.html#tasks" class="dropdown-link" id="tasks-dropdown-link">
                                     <i data-lucide="check-square" class="dropdown-icon"></i>
                                     <span>Tasks</span>
-                                    <span class="badge badge-purple">4</span>
+                                    <span class="badge badge-purple">3</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html#dashboard" class="dropdown-link">
+                                <a href="profile.html#dashboard" class="dropdown-link">
                                     <i data-lucide="trending-up" class="dropdown-icon"></i>
                                     <span>Progress</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#logout" class="dropdown-link text-danger">
+                                <a href="profile.html#logout" class="dropdown-link text-danger">
                                     <i data-lucide="log-out" class="dropdown-icon"></i>
                                     <span>Log Out</span>
                                 </a>
@@ -113,6 +114,222 @@
             </div>
         </nav>
     </header>
+
+    <main class="main-content container">
+
+        <!-- Profile Section -->
+        <section id="profile" class="section-wrapper profile-wrapper">
+            <h2 class="section-title"><i data-lucide="user" class="section-icon"></i> My Profile - Badges</h2>
+        <div class="profile-hero-section">
+            <div class="profile-content">
+                <div class="profile-card glass-card">
+                    <div class="profile-avatar-wrapper">
+                        <img src="assets/avatar.png" alt="Profile Avatar" class="profile-avatar-large">
+                        <span class="avatar-status-dot"></span>
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">Alex Rivera</h3>
+                        <p class="profile-email">
+                            alex.rivera@svnit.ac.in
+                        </p>
+                    </div>
+                </div>
+           
+            <div class="badges-container">
+                <div class="badge">
+                    <img src="assets/focus_master.png" alt="Focus Master Badge" class="badge-icon">
+                    <div class="badge-info"><span class="badge-name">Focus Master</span></div>
+                </div>
+                <div class="badge">
+                    <img src="assets/community_badge.png" alt="Community Contributor Badge" class="badge-icon">
+                    <div class="badge-info"><span class="badge-name">Community Contributor</span></div>
+                </div>
+                <div class="badge">
+                    <img src="assets/early_adopter.png" alt="Early Adopter Badge" class="badge-icon">
+                    <div class="badge-info"><span class="badge-name">Early Adopter</span></div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section-wrapper">
+            <h2 class="section-title"><i data-lucide="layout-grid" class="section-icon"></i> Your Workspace</h2>
+            <div class="dashboard-grid">
+                
+                <!-- Stat Card 1: Today's Goal -->
+                <div class="stat-card glass-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Today's Goal</span>
+                        <div class="stat-icon-wrapper cyan-glow"><i data-lucide="target" class="stat-icon text-cyan"></i></div>
+                    </div>
+                    <div class="stat-card-body">
+                        <div class="progress-radial-wrapper">
+                            <svg class="progress-radial" width="100" height="100" viewBox="0 0 100 100">
+                                <circle class="progress-radial-bg" cx="50" cy="50" r="40" stroke-width="8" fill="transparent"/>
+                                <circle class="progress-radial-bar" cx="50" cy="50" r="40" stroke-width="8" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="78.5"/> <!-- 68.75% of 251.2 = 172.7 progress -->
+                            </svg>
+                            <div class="progress-radial-text">
+                                <span class="progress-value">69%</span>
+                                <span class="progress-label">done</span>
+                            </div>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-num">5.5 <span class="stat-unit">/ 8 hrs</span></span>
+                            <p class="stat-desc">2.5 hours remaining to hit goal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2: Completed -->
+                <div class="stat-card glass-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Weekly Analytics</span>
+                        <div class="stat-icon-wrapper purple-glow"><i data-lucide="bar-chart-2" class="stat-icon text-purple"></i></div>
+                    </div>
+                    <div class="stat-card-body">
+                        <!-- Custom Interactive SVG Bar Chart -->
+                        <div class="bar-chart-container">
+                            <svg class="bar-chart" viewBox="0 0 200 80">
+                                <g class="chart-bars">
+                                    <!-- Mon -->
+                                    <rect class="chart-bar" x="15" y="30" width="14" height="50" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Tue -->
+                                    <rect class="chart-bar" x="40" y="20" width="14" height="60" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Wed -->
+                                    <rect class="chart-bar" x="65" y="45" width="14" height="35" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Thu -->
+                                    <rect class="chart-bar" x="90" y="15" width="14" height="65" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Fri -->
+                                    <rect class="chart-bar" x="115" y="25" width="14" height="55" rx="3" fill="url(#purpleGradient)"/>
+                                    <!-- Sat (Today - highlighted) -->
+                                    <rect class="chart-bar active" x="140" y="25" width="14" height="55" rx="3" fill="url(#cyanGradient)"/>
+                                    <!-- Sun -->
+                                    <rect class="chart-bar future" x="165" y="75" width="14" height="5" rx="3" fill="rgba(255,255,255,0.1)"/>
+                                </g>
+                                <defs>
+                                    <linearGradient id="purpleGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#8B5CF6"/>
+                                        <stop offset="100%" stop-color="#4F46E5"/>
+                                    </linearGradient>
+                                    <linearGradient id="cyanGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#06B6D4"/>
+                                        <stop offset="100%" stop-color="#0891B2"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="chart-labels">
+                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span class="active">S</span><span>S</span>
+                            </div>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-num">32.4 <span class="stat-unit">hrs total</span></span>
+                            <p class="stat-desc">Up +14% compared to last week</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3: Current Streak -->
+                <div class="stat-card glass-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Daily Streak</span>
+                        <div class="stat-icon-wrapper orange-glow"><i data-lucide="flame" class="stat-icon text-orange"></i></div>
+                    </div>
+                    <div class="stat-card-body streak-body">
+                        <div class="streak-large-count">
+                            <span class="streak-number glow-text-orange">12</span>
+                            <span class="streak-label">DAYS</span>
+                        </div>
+                        <div class="streak-milestone-bar">
+                            <div class="streak-milestone-fill" style="width: 80%;"></div>
+                            <span class="streak-milestone-marker m1" title="5 Day Milestone Done"><i data-lucide="award"></i></span>
+                            <span class="streak-milestone-marker m2" title="10 Day Milestone Done"><i data-lucide="award"></i></span>
+                            <span class="streak-milestone-marker m3 active" title="15 Day Milestone Pending"><i data-lucide="crown"></i></span>
+                        </div>
+                        <div class="stat-details">
+                            <p class="stat-desc text-center">3 days until 15-day streak milestone!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 4: Next Deadline -->
+                <div class="stat-card glass-card deadline-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Critical Deadline</span>
+                        <div class="stat-icon-wrapper red-glow"><i data-lucide="bell-ring" class="stat-icon text-red"></i></div>
+                    </div>
+                    <div class="stat-card-body deadline-body">
+                        <div class="deadline-badge">TOMORROW 11:59 PM</div>
+                        <h4 class="deadline-title">Machine Learning Competition</h4>
+                        <p class="deadline-subtitle">SVNIT National Hackathon Round 1</p>
+                        
+                        <!-- Countdown Timer -->
+                        <div class="deadline-countdown" id="deadline-timer">
+                            <div class="countdown-unit">
+                                <span class="countdown-num" id="dl-hours">25</span>
+                                <span class="countdown-lbl">hrs</span>
+                            </div>
+                            <span class="countdown-divider">:</span>
+                            <div class="countdown-unit">
+                                <span class="countdown-num" id="dl-mins">32</span>
+                                <span class="countdown-lbl">mins</span>
+                            </div>
+                            <span class="countdown-divider">:</span>
+                            <div class="countdown-unit">
+                                <span class="countdown-num" id="dl-secs">15</span>
+                                <span class="countdown-lbl">secs</span>
+                            </div>
+                        </div>
+                        <button class="deadline-action-btn"><i data-lucide="upload-cloud"></i> Submit Project</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tasks Floating Quick list -->
+        <section id="tasks" class="section-wrapper tasks-section">
+            <h2 class="section-title"><i data-lucide="check-square" class="section-icon"></i> Active Tasks</h2>
+            <div class="tasks-card glass-card">
+                <div class="tasks-header">
+                    <h3>Today's Focus List</h3>
+                    <button class="add-task-btn" id="add-task-btn"><i data-lucide="plus"></i> Add Task</button>
+                </div>
+                <div class="tasks-input-container hidden" id="task-input-wrapper">
+                    <input type="text" id="task-input" placeholder="What will you work on next?">
+                    <button id="task-submit-btn"><i data-lucide="plus"></i></button>
+                </div>
+                <ul class="tasks-list" id="tasks-list">
+                    <li class="task-item">
+                        <label class="task-checkbox-wrapper">
+                            <input type="checkbox" checked class="task-checkbox">
+                            <span class="task-custom-checkbox"><i data-lucide="check" class="check-icon"></i></span>
+                            <span class="task-text">Revise Lecture 12-14 of Machine Learning</span>
+                        </label>
+                        <span class="task-tag tag-high">High</span>
+                    </li>
+                    <li class="task-item">
+                        <label class="task-checkbox-wrapper">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-custom-checkbox"><i data-lucide="check" class="check-icon"></i></span>
+                            <span class="task-text">Write PyTorch Training Loop for CNN</span>
+                        </label>
+                        <span class="task-tag tag-medium">Medium</span>
+                    </li>
+                    <li class="task-item">
+                        <label class="task-checkbox-wrapper">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-custom-checkbox"><i data-lucide="check" class="check-icon"></i></span>
+                            <span class="task-text">Read Atomic Habits Chapter 4</span>
+                        </label>
+                        <span class="task-tag tag-low">Low</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer-wrapper">
