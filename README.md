@@ -84,7 +84,7 @@ The project assumes that the user has already logged into a platform environment
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/manu131415/ZenFocus
 ```
 
 ### Run the Project
