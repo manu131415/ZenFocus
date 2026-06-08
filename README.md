@@ -1,14 +1,12 @@
 # 🚀 ZenFocus - Elevate Your Study & Focus Habits
 
-ZenFocus is a productivity-focused web application designed to help students build better study habits through structured focus sessions, progress tracking, and gamified motivation.
-Built around the proven **Pomodoro Technique**, ZenFocus encourages deep work while helping users stay consistent, organized, and motivated throughout their learning journey.
+ZenFocus is a productivity-focused web application designed to help students build better study habits through structured focus sessions, progress tracking, and gamified motivation. Built around the proven **Pomodoro Technique**, ZenFocus encourages deep work while helping users stay consistent, organized, and motivated throughout their learning journey.
 
 ---
 
 ## 🌟 Inspiration
 
-ZenFocus was inspired by the popular Pomodoro study method, which promotes focused work sessions of **25 minutes** followed by **5-minute breaks**, with longer breaks after multiple cycles.
-Students often struggle with distractions from social media and inconsistent study routines. ZenFocus aims to provide a distraction-free environment that makes productivity engaging, rewarding, and sustainable.
+ZenFocus was inspired by the popular Pomodoro study method, which promotes focused work sessions of **25 minutes** followed by **5-minute breaks**, with longer breaks after multiple cycles. Students often struggle with distractions from social media and inconsistent study routines. ZenFocus aims to provide a distraction-free environment that makes productivity engaging, rewarding, and sustainable.
 
 ---
 
