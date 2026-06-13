@@ -28,18 +28,43 @@
     <header class="navbar-wrapper">
         <nav class="navbar container">
             <div class="nav-left">
-                <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
-                <span class="nav-logo-text"><a href="index.html">ZenFocus</a></span>
+                <a href="index.html" class="nav-logo-link">
+                    <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
+                    <span class="nav-logo-text">ZenFocus</span>
+                </a>
             </div>
             
             <ul class="nav-links">
-                <li><a href="index.html#dashboard" class="nav-link"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
+                <li><a href="profile.html#dashboard" class="nav-link"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
                 <li><a href="index.html#focus" class="nav-link"><i data-lucide="timer" class="nav-icon"></i> Focus</a></li>
                 <li><a href="community.html" class="nav-link"><i data-lucide="users" class="nav-icon"></i> Community</a></li>
                 <li><a href="resources.html" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
             </ul>
 
             <div class="nav-right">
+                <!-- Notification Indicator -->
+                <div class="notification-indicator-wrapper" id="notification-btn" title="Notifications">
+                    <div class="notification-btn">
+                        <i data-lucide="bell" class="cart-icon"></i>
+                        <span class="notification-badge">1</span>
+                    </div>
+                    <!-- Mini Notification Dropdown -->
+                    <div class="glass-dropdown notification-dropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <span class="mark-all-read" id="mark-read-btn">Mark all read</span>
+                        </div>
+                        <ul class="notification-items-list" id="notification-list">
+                            <li class="notification-item unread">
+                                <div class="notification-info">
+                                    <span class="notification-text">Machine Learning Competition deadline is tomorrow at 11:59 PM!</span>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="cart-indicator-wrapper" id="cart-btn" title="View Cart">
                     <div class="cart-btn">
                         <i data-lucide="shopping-cart" class="cart-icon"></i>
@@ -51,15 +76,15 @@
                             <h3>Shopping Cart</h3>
                             <span class="cart-items-count">2 Items</span>
                         </div>
-                        <ul class="cart-items-list">
-                            <li class="cart-item">
+                        <ul class="cart-items-list" id="cart-items-list">
+                            <li class="cart-item" data-id="premium-yearly">
                                 <div class="cart-item-info">
                                     <span class="cart-item-name">ZenFocus Premium Yearly</span>
                                     <span class="cart-item-price">$29.99</span>
                                 </div>
                                 <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
                             </li>
-                            <li class="cart-item">
+                            <li class="cart-item" data-id="sound-rainforest">
                                 <div class="cart-item-info">
                                     <span class="cart-item-name">Focus Sound Pack - Rainforest</span>
                                     <span class="cart-item-price">$4.99</span>
@@ -69,14 +94,14 @@
                         </ul>
                         <div class="cart-total">
                             <span>Total:</span>
-                            <span class="total-amount">$34.98</span>
+                            <span class="total-amount" id="cart-total-amount">$34.98</span>
                         </div>
-                        <button class="checkout-btn" onclick="window.location.href='profile.html'">Checkout Now</button>
+                        <button class="checkout-btn" id="cart-checkout-btn">Checkout Now</button>
                     </div>
                 </div>
         
                 <div class="profile-dropdown-wrapper">
-                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn" onclick="window.location.href='profile.html'">
+                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn">
                         <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
                         <span class="avatar-status-dot"></span>
                     </button>
@@ -96,13 +121,19 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html#dashboard" class="dropdown-link">
+                                <a href="profile.html#dashboard" class="dropdown-link">
                                     <i data-lucide="trending-up" class="dropdown-icon"></i>
                                     <span>Progress</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#logout" class="dropdown-link text-danger">
+                                <a href="#settings" class="dropdown-link" id="settings-trigger">
+                                    <i data-lucide="settings" class="dropdown-icon"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#logout" class="dropdown-link text-danger" id="logout-trigger">
                                     <i data-lucide="log-out" class="dropdown-icon"></i>
                                     <span>Log Out</span>
                                 </a>
@@ -116,130 +147,124 @@
 
 
 <main class="main-content container">
-<!-- Focus Section -->
-            <section id="focus" class="section-wrapper focus-wrapper">
-                <h2 class="section-title"><i data-lucide="play-circle" class="section-icon"></i> Focus Session</h2>
-                <div class="timer-card">
-                    <!-- Timer Modes -->
-                    <div class="timer-modes">
-                        <button class="timer-mode-btn active" data-mode="pomodoro">Pomodoro</button>
-                        <button class="timer-mode-btn" data-mode="short">Short Break</button>
-                        <button class="timer-mode-btn" data-mode="long">Long Break</button>
-                    </div>
-
-                    <!-- Interactive Circle & Time Display -->
-                    <div class="timer-display-wrapper">
-                        <svg class="timer-circle-svg" width="220" height="220" viewBox="0 0 220 220">
-                            <!-- Background track -->
-                            <circle class="timer-circle-track" cx="110" cy="110" r="95" stroke-width="6" fill="transparent"/>
-                            <!-- Glowing animated progress -->
-                            <circle class="timer-circle-progress" id="timer-progress" cx="110" cy="110" r="95" stroke-width="6" fill="transparent" stroke-dasharray="596.9" stroke-dashoffset="0"/>
-                        </svg>
-                        <div class="timer-digits-container">
-                            <span class="timer-digits" id="timer-time">25:00</span>
-                            <span class="timer-state-label" id="timer-state">Ready to Focus</span>
-                        </div>
-                    </div>
-
-                    <!-- Timer Controls -->
-                    <div class="timer-controls">
-                        <button class="timer-btn btn-secondary" id="timer-reset" title="Reset Timer"><i data-lucide="rotate-ccw"></i></button>
-                        <button class="timer-btn btn-primary" id="timer-toggle">
-                            <i data-lucide="play" class="play-icon"></i>
-                            <i data-lucide="pause" class="pause-icon hidden"></i>
-                            <span id="timer-toggle-text">Start Focus</span>
-                        </button>
-                        <div class="timer-audio-control" id="audio-toggle" title="Toggle Focus Sound">
-                            <i data-lucide="volume-2" class="vol-on-icon"></i>
-                            <i data-lucide="volume-x" class="vol-off-icon hidden"></i>
-                        </div>
-                    </div>
-
-                    <!-- Hidden Audio Elements for Alerts and Ambience -->
-                    <audio id="alert-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-200.wav" preload="auto"></audio>
+    <!-- Lobby Container -->
+    <div id="rooms-lobby-container">
+        <!-- Focus Section -->
+        <section id="focus" class="section-wrapper focus-wrapper">
+            <h2 class="section-title"><i data-lucide="play-circle" class="section-icon"></i> Focus Session</h2>
+            <div class="timer-card">
+                <!-- Timer Modes -->
+                <div class="timer-modes">
+                    <button class="timer-mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                    <button class="timer-mode-btn" data-mode="short">Short Break</button>
+                    <button class="timer-mode-btn" data-mode="long">Long Break</button>
                 </div>
-            </section>
 
-            <section class="leaderboard-section">
-        <div class="leaderboard-preview">
-                        <h4 class="leaderboard-title"><i data-lucide="trophy" class="trophy-icon"></i> Weekly Leaderboard</h4>
-                        <div class="leaderboard-users">
-                            <div class="leaderboard-user">
-                                <span class="rank rank-1">1</span>
-                                <img src="assets/avatar.png" alt="Rank 1 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Alex R.</span>
-                                <span class="focus-time">42.5 hrs</span>
-                            </div>
-                            <div class="leaderboard-user">
-                                <span class="rank rank-2">2</span>
-                                <img src="assets/avatar.png" alt="Rank 2 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Sneha M.</span>
-                                <span class="focus-time">39.1 hrs</span>
-                            </div>
-                            <div class="leaderboard-user">
-                                <span class="rank rank-3">3</span>
-                                <img src="assets/avatar.png" alt="Rank 3 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Dev K.</span>
-                                <span class="focus-time">36.8 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-4">4</span>
-                                <img src="assets/avatar.png" alt="Rank 4 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Priya S.</span>
-                                <span class="focus-time">34.8 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-5">5</span>
-                                <img src="assets/avatar.png" alt="Rank 5 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Raj N.</span>
-                                <span class="focus-time">32.2 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-6">6</span>
-                                <img src="assets/avatar.png" alt="Rank 6 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Anya R.</span>
-                                <span class="focus-time">30.5 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-7">7</span>
-                                <img src="assets/avatar.png" alt="Rank 7 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Maya P.</span>
-                                <span class="focus-time">28.1 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-8">8</span>
-                                <img src="assets/avatar.png" alt="Rank 8 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Alex M.</span>
-                                <span class="focus-time">26.7 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-9">9</span>
-                                <img src="assets/avatar.png" alt="Rank 9 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Raj N.</span>
-                                <span class="focus-time">22.2 hrs</span>
-                            </div>
-
-                            <div class="leaderboard-user">
-                                <span class="rank rank-3">10</span>
-                                <img src="assets/avatar.png" alt="Rank 10 Avatar" class="leaderboard-avatar">
-                                <span class="user-name">Arjun S.</span>
-                                <span class="focus-time">20.5 hrs</span>
-                            </div>
-                        </div>
+                <!-- Interactive Circle & Time Display -->
+                <div class="timer-display-wrapper">
+                    <svg class="timer-circle-svg" width="220" height="220" viewBox="0 0 220 220">
+                        <!-- Background track -->
+                        <circle class="timer-circle-track" cx="110" cy="110" r="95" stroke-width="6" fill="transparent"/>
+                        <!-- Glowing animated progress -->
+                        <circle class="timer-circle-progress" id="timer-progress" cx="110" cy="110" r="95" stroke-width="6" fill="transparent" stroke-dasharray="596.9" stroke-dashoffset="0"/>
+                    </svg>
+                    <div class="timer-digits-container">
+                        <span class="timer-digits" id="timer-time">25:00</span>
+                        <span class="timer-state-label" id="timer-state">Ready to Focus</span>
                     </div>
-            </section>
+                </div>
+
+                <!-- Timer Controls -->
+                <div class="timer-controls">
+                    <button class="timer-btn btn-secondary" id="timer-reset" title="Reset Timer"><i data-lucide="rotate-ccw"></i></button>
+                    <button class="timer-btn btn-primary" id="timer-toggle">
+                        <i data-lucide="play" class="play-icon"></i>
+                        <i data-lucide="pause" class="pause-icon hidden"></i>
+                        <span id="timer-toggle-text">Start Focus</span>
+                    </button>
+                    <div class="timer-audio-control" id="audio-toggle" title="Toggle Focus Sound">
+                        <i data-lucide="volume-2" class="vol-on-icon"></i>
+                        <i data-lucide="volume-x" class="vol-off-icon hidden"></i>
+                    </div>
+                </div>
+
+                <!-- Hidden Audio Elements for Alerts and Ambience -->
+                <audio id="alert-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-200.wav" preload="auto"></audio>
+            </div>
+        </section>
+
+        <section class="leaderboard-section">
+            <div class="leaderboard-preview">
+                <h4 class="leaderboard-title"><i data-lucide="trophy" class="trophy-icon"></i> Weekly Leaderboard</h4>
+                <div class="leaderboard-users">
+                    <div class="leaderboard-user">
+                        <span class="rank rank-1">1</span>
+                        <img src="assets/avatar.png" alt="Rank 1 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Alex R.</span>
+                        <span class="focus-time">42.5 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-2">2</span>
+                        <img src="assets/avatar.png" alt="Rank 2 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Sneha M.</span>
+                        <span class="focus-time">39.1 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-3">3</span>
+                        <img src="assets/avatar.png" alt="Rank 3 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Dev K.</span>
+                        <span class="focus-time">36.8 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-4">4</span>
+                        <img src="assets/avatar.png" alt="Rank 4 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Priya S.</span>
+                        <span class="focus-time">34.8 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-5">5</span>
+                        <img src="assets/avatar.png" alt="Rank 5 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Raj N.</span>
+                        <span class="focus-time">32.2 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-6">6</span>
+                        <img src="assets/avatar.png" alt="Rank 6 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Anya R.</span>
+                        <span class="focus-time">30.5 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-7">7</span>
+                        <img src="assets/avatar.png" alt="Rank 7 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Maya P.</span>
+                        <span class="focus-time">28.1 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-8">8</span>
+                        <img src="assets/avatar.png" alt="Rank 8 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Alex M.</span>
+                        <span class="focus-time">26.7 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-9">9</span>
+                        <img src="assets/avatar.png" alt="Rank 9 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Raj N.</span>
+                        <span class="focus-time">22.2 hrs</span>
+                    </div>
+                    <div class="leaderboard-user">
+                        <span class="rank rank-3">10</span>
+                        <img src="assets/avatar.png" alt="Rank 10 Avatar" class="leaderboard-avatar">
+                        <span class="user-name">Arjun S.</span>
+                        <span class="focus-time">20.5 hrs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!--Floating illustration / Graphics Card (Right)-->
         <br><br>
         <h2 class="section-title"><i data-lucide="users" class="section-icon"></i> Grow together</h2>
         <div class="hero-card illustration-card">
-            
             <div class="illustration-backdrop"></div>
             <img src="assets/Gemini_Generated_Image_o6fwjo6fwjo6fwjo.png" alt="Students Focusing" class="floating-illustration">
             <div class="feature-pills">
@@ -248,6 +273,42 @@
                 <span class="feature-pill pill-community"><i data-lucide="users-2"></i>Study Rooms</span>
             </div>
         </div>
+    </div>
+
+    <!-- Active Room Container (hidden by default) -->
+    <div id="active-room-container" class="hidden">
+        <div class="active-room-header glass-card">
+            <div class="room-title-info">
+                <span class="live-dot"></span>
+                <h2 id="active-room-title">Library Silence Room #2</h2>
+                <span class="room-user-count"><i data-lucide="users" class="small-icon"></i> <span id="active-room-users">49</span> focusing</span>
+            </div>
+            <button class="leave-room-btn" id="leave-room-btn"><i data-lucide="log-out" class="small-icon"></i> Leave Room</button>
+        </div>
+
+        <div class="room-grid-layout">
+            <!-- Video Feeds -->
+            <div class="video-feeds-wrapper">
+                <div class="video-grid" id="video-grid">
+                    <!-- Dynamic participant cells -->
+                </div>
+            </div>
+
+            <!-- Chat Sidebar -->
+            <div class="room-chat-sidebar glass-card">
+                <div class="room-chat-header">
+                    <h3>Room Chat</h3>
+                </div>
+                <div class="room-chat-messages" id="room-chat-messages">
+                    <!-- Messages will be appended here -->
+                </div>
+                <div class="room-chat-input-wrapper">
+                    <input type="text" id="room-chat-input" placeholder="Say hello to SVNIT focusers...">
+                    <button id="room-chat-send"><i data-lucide="send"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <!-- Footer -->
@@ -266,6 +327,127 @@
         </div>
     </footer>
 
-<script src="app.js"></script>
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2><i data-lucide="settings"></i> Focus Settings</h2>
+                <button class="modal-close" id="settings-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="setting-pomodoro">Pomodoro Duration (minutes)</label>
+                        <input type="number" id="setting-pomodoro" min="1" max="180" value="25" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-short">Short Break Duration (minutes)</label>
+                        <input type="number" id="setting-short" min="1" max="60" value="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-long">Long Break Duration (minutes)</label>
+                        <input type="number" id="setting-long" min="1" max="120" value="15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-goal">Daily Focus Goal (hours)</label>
+                        <input type="number" id="setting-goal" min="1" max="24" value="8" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-sound">Ambient Sound</label>
+                        <select id="setting-sound">
+                            <option value="none">None</option>
+                            <option value="rainforest">Rainforest Ambience</option>
+                            <option value="ocean">Ocean Waves</option>
+                            <option value="lofi">Lofi Beats</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="switch-wrapper">
+                            <input type="checkbox" id="setting-volume" checked>
+                            <span class="switch-slider"></span>
+                        </label>
+                        <span>Enable Alert Sound on Finish</span>
+                    </div>
+                    <button type="submit" class="modal-save-btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 id="auth-title">Log In to ZenFocus</h2>
+                <button class="modal-close" id="auth-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="auth-email">Email Address</label>
+                        <input type="email" id="auth-email" placeholder="alex.rivera@svnit.ac.in" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="auth-password">Password</label>
+                        <input type="password" id="auth-password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="modal-save-btn" id="auth-submit-btn">Continue</button>
+                </form>
+                <div class="auth-toggle">
+                    <span id="auth-toggle-text">Don't have an account?</span>
+                    <button id="auth-toggle-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-content glass-card checkout-modal-content">
+            <div class="modal-header">
+                <h2>Secure Checkout</h2>
+                <button class="modal-close" id="checkout-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <ul class="checkout-items" id="checkout-items-summary">
+                        <!-- populated dynamically -->
+                    </ul>
+                    <div class="checkout-total">
+                        <span>Total amount:</span>
+                        <span id="checkout-total-val">$0.00</span>
+                    </div>
+                </div>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="Alex Rivera" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="4111 2222 3333 4444" pattern="[0-9\s]{13,19}" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvv">CVV</label>
+                            <input type="password" id="card-cvv" placeholder="•••" pattern="[0-9]{3}" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="modal-save-btn">Pay Now & Upgrade</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
 </body>
 </html>

@@ -28,18 +28,43 @@
     <header class="navbar-wrapper">
         <nav class="navbar container">
             <div class="nav-left">
-                <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
-                <span class="nav-logo-text"><a href="index.html">ZenFocus</a></span>
+                <a href="index.html" class="nav-logo-link">
+                    <img src="assets/logo.png" alt="ZenFocus Logo" class="nav-logo-img">
+                    <span class="nav-logo-text">ZenFocus</span>
+                </a>
             </div>
             
             <ul class="nav-links">
-                <li><a href="index.html#dashboard" class="nav-link"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
+                <li><a href="#dashboard" class="nav-link"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a></li>
                 <li><a href="index.html#focus" class="nav-link"><i data-lucide="timer" class="nav-icon"></i> Focus</a></li>
                 <li><a href="community.html" class="nav-link"><i data-lucide="users" class="nav-icon"></i> Community</a></li>
                 <li><a href="resources.html" class="nav-link"><i data-lucide="book-open" class="nav-icon"></i> Resources</a></li>
             </ul>
 
             <div class="nav-right">
+                <!-- Notification Indicator -->
+                <div class="notification-indicator-wrapper" id="notification-btn" title="Notifications">
+                    <div class="notification-btn">
+                        <i data-lucide="bell" class="cart-icon"></i>
+                        <span class="notification-badge">1</span>
+                    </div>
+                    <!-- Mini Notification Dropdown -->
+                    <div class="glass-dropdown notification-dropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <span class="mark-all-read" id="mark-read-btn">Mark all read</span>
+                        </div>
+                        <ul class="notification-items-list" id="notification-list">
+                            <li class="notification-item unread">
+                                <div class="notification-info">
+                                    <span class="notification-text">Machine Learning Competition deadline is tomorrow at 11:59 PM!</span>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="cart-indicator-wrapper" id="cart-btn" title="View Cart">
                     <div class="cart-btn">
                         <i data-lucide="shopping-cart" class="cart-icon"></i>
@@ -51,15 +76,15 @@
                             <h3>Shopping Cart</h3>
                             <span class="cart-items-count">2 Items</span>
                         </div>
-                        <ul class="cart-items-list">
-                            <li class="cart-item">
+                        <ul class="cart-items-list" id="cart-items-list">
+                            <li class="cart-item" data-id="premium-yearly">
                                 <div class="cart-item-info">
                                     <span class="cart-item-name">ZenFocus Premium Yearly</span>
                                     <span class="cart-item-price">$29.99</span>
                                 </div>
                                 <button class="cart-item-remove" title="Remove"><i data-lucide="trash-2"></i></button>
                             </li>
-                            <li class="cart-item">
+                            <li class="cart-item" data-id="sound-rainforest">
                                 <div class="cart-item-info">
                                     <span class="cart-item-name">Focus Sound Pack - Rainforest</span>
                                     <span class="cart-item-price">$4.99</span>
@@ -69,14 +94,14 @@
                         </ul>
                         <div class="cart-total">
                             <span>Total:</span>
-                            <span class="total-amount">$34.98</span>
+                            <span class="total-amount" id="cart-total-amount">$34.98</span>
                         </div>
-                        <button class="checkout-btn" onclick="window.location.href='profile.html'">Checkout Now</button>
+                        <button class="checkout-btn" id="cart-checkout-btn">Checkout Now</button>
                     </div>
                 </div>
         
                 <div class="profile-dropdown-wrapper">
-                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn" onclick="window.location.href='profile.html'">
+                    <button class="avatar-trigger" aria-haspopup="true" aria-expanded="false" id="profile-btn">
                         <img src="assets/avatar.png" alt="Student Profile Avatar" class="profile-avatar">
                         <span class="avatar-status-dot"></span>
                     </button>
@@ -86,11 +111,11 @@
                         <div class="dropdown-header">
                             <span class="user-name">Alex Rivera</span>
                             <span class="user-email">alex.rivera@svnit.ac.in</span>
-                        
-                        <div class="profile-points">
-                            <i data-lucide="star" class="points-icon"></i>
-                            <span class="points-value">1,250 XP</span>
-                        </div>
+                            
+                            <div class="profile-points">
+                                <i data-lucide="star" class="points-icon"></i>
+                                <span class="points-value" id="profile-xp-val">1,250 XP</span>
+                            </div>
                         </div>
                         <div class="dropdown-divider"></div>
                         <ul class="dropdown-menu-links">
@@ -108,7 +133,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="profile.html#logout" class="dropdown-link text-danger">
+                                <a href="#settings" class="dropdown-link" id="settings-trigger">
+                                    <i data-lucide="settings" class="dropdown-icon"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#logout" class="dropdown-link text-danger" id="logout-trigger">
                                     <i data-lucide="log-out" class="dropdown-icon"></i>
                                     <span>Log Out</span>
                                 </a>
@@ -352,6 +383,127 @@
         </div>
     </footer>
 
-<script src="app.js"></script>
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2><i data-lucide="settings"></i> Focus Settings</h2>
+                <button class="modal-close" id="settings-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="setting-pomodoro">Pomodoro Duration (minutes)</label>
+                        <input type="number" id="setting-pomodoro" min="1" max="180" value="25" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-short">Short Break Duration (minutes)</label>
+                        <input type="number" id="setting-short" min="1" max="60" value="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-long">Long Break Duration (minutes)</label>
+                        <input type="number" id="setting-long" min="1" max="120" value="15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-goal">Daily Focus Goal (hours)</label>
+                        <input type="number" id="setting-goal" min="1" max="24" value="8" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setting-sound">Ambient Sound</label>
+                        <select id="setting-sound">
+                            <option value="none">None</option>
+                            <option value="rainforest">Rainforest Ambience</option>
+                            <option value="ocean">Ocean Waves</option>
+                            <option value="lofi">Lofi Beats</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="switch-wrapper">
+                            <input type="checkbox" id="setting-volume" checked>
+                            <span class="switch-slider"></span>
+                        </label>
+                        <span>Enable Alert Sound on Finish</span>
+                    </div>
+                    <button type="submit" class="modal-save-btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 id="auth-title">Log In to ZenFocus</h2>
+                <button class="modal-close" id="auth-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="auth-email">Email Address</label>
+                        <input type="email" id="auth-email" placeholder="alex.rivera@svnit.ac.in" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="auth-password">Password</label>
+                        <input type="password" id="auth-password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="modal-save-btn" id="auth-submit-btn">Continue</button>
+                </form>
+                <div class="auth-toggle">
+                    <span id="auth-toggle-text">Don't have an account?</span>
+                    <button id="auth-toggle-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-content glass-card checkout-modal-content">
+            <div class="modal-header">
+                <h2>Secure Checkout</h2>
+                <button class="modal-close" id="checkout-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <ul class="checkout-items" id="checkout-items-summary">
+                        <!-- populated dynamically -->
+                    </ul>
+                    <div class="checkout-total">
+                        <span>Total amount:</span>
+                        <span id="checkout-total-val">$0.00</span>
+                    </div>
+                </div>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="Alex Rivera" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="4111 2222 3333 4444" pattern="[0-9\s]{13,19}" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvv">CVV</label>
+                            <input type="password" id="card-cvv" placeholder="•••" pattern="[0-9]{3}" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="modal-save-btn">Pay Now & Upgrade</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
 </body>
 </html>
