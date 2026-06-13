@@ -90,6 +90,7 @@ function initState() {
         localStorage.setItem("zenfocus_streak", DEFAULT_STATE.streak.toString());
         localStorage.setItem("zenfocus_notifications", JSON.stringify(DEFAULT_STATE.notifications));
         localStorage.setItem("zenfocus_state_initialized", "true");
+        
     }
 }
 
